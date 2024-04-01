@@ -11,9 +11,6 @@ public class bullet : MonoBehaviour
     {
         rigidbody2d.velocity = new Vector2(-15, 0);
         i++;
-        if (i == 75)
-        {
-            Destroy(this.gameObject);
-        }
+        if (i == 75) Destroy(this.gameObject);
     }
 }

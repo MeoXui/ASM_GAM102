@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4253398258839785987}
   - component: {fileID: 4846817507080907284}
   - component: {fileID: 1085036285206984805}
-  m_Layer: 0
+  - component: {fileID: 29045863142478487}
+  m_Layer: 6
   m_Name: 20
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1323,3 +1324,21 @@ CompositeCollider2D:
   m_OffsetDistance: 0
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1147199137587045252}
+--- !u!114 &29045863142478487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147199137587045252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4681f5f87cf10d44abf480513cbb9d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 9200053858634537417}
+  SP: {fileID: 5956401010545067859, guid: ae56baeae1652d64989e778a376bc8d3, type: 3}
+  EP: {fileID: 8278371600469203169, guid: b9f4141755f26314fbe4c317f7141fa4, type: 3}
+  plant: {fileID: 5429759681987969355, guid: 566b603fb7bbe3d4da7b7854cb592f00, type: 3}
+  boar: {fileID: 4812686893746027267, guid: 8092c0c808c4bfa488eac0cdf40abd93, type: 3}
+  width: 20

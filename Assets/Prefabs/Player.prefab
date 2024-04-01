@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 5612418167466382721}
   - component: {fileID: 6918348055841459736}
   - component: {fileID: 847049398545644116}
-  - component: {fileID: 6681074768099436186}
+  - component: {fileID: 8202408931294846260}
   - component: {fileID: 1131515613347610380}
   - component: {fileID: 7791345931913105520}
   - component: {fileID: 8502116071799174772}
   - component: {fileID: 5865344144818666067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5625, y: 1.5625}
   m_EdgeRadius: 0
---- !u!61 &6681074768099436186
+--- !u!61 &8202408931294846260
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1792
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63487c81f8e4f684dacd7e50e436f4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 5612418167466382721}
+  self: {fileID: 5612418167466382721}
   hpTransform: {fileID: 7814886047716117358}
   spriteRenderer: {fileID: 6918348055841459736}
   rigidbody2d: {fileID: 1131515613347610380}
@@ -346,8 +346,11 @@ MonoBehaviour:
   hp: {fileID: 1153879329046623949}
   fillImage: {fileID: 365965299697587358}
   jumpForce: 6
-  moveSeped: 7
+  moveSpeed: 7
   jumpsNumber: 2
+  lmEnemy:
+    serializedVersion: 2
+    m_Bits: 256
   audioClips:
   - {fileID: 8300000, guid: 247709f832e687342afecc5ac3d7bffd, type: 3}
   - {fileID: 8300000, guid: a598fe3325beed74c81590ff549b7208, type: 3}
@@ -576,7 +579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7814886047716117358}
   - component: {fileID: 1153879329046623949}
-  - component: {fileID: 1159055966457706477}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -656,20 +658,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1159055966457706477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380866018950251635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f92b321e3cb41479a4739b3b84cd6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: {fileID: 1153879329046623949}
-  fillImage: {fileID: 365965299697587358}
 --- !u!1 &8408112186848200745
 GameObject:
   m_ObjectHideFlags: 0

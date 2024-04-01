@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnGround : MonoBehaviour
 {
-    public Transform player, transform;
+    public Transform player, self;
     public List<GameObject> lg, lo;
     int endPos, range, nextPos;
 
@@ -23,7 +23,7 @@ public class SpawnGround : MonoBehaviour
         range = Random.Range(2, 6);
         nextPos = endPos + range;
         int id = Random.Range(0, lg.Count);
-        GameObject newGO = Instantiate(lg[id], new Vector3(nextPos, Random.Range(0, 2), 0), Quaternion.identity, transform);
+        GameObject newGO = Instantiate(lg[id], new Vector3(nextPos, Random.Range(0, 2), 0), Quaternion.identity, self);
         lo.Add(newGO);
 
         switch (id)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
-    public Transform transform, hpTransform;
+    public Transform self, hpTransform;
     public SpriteRenderer spriteRenderer;
     public Rigidbody2D rigidbody2d;
     public Animator animator;
@@ -15,13 +15,16 @@ public class player : MonoBehaviour
     public Slider hp;
     public Image fillImage;
 
-    public float jumpForce, moveSeped;
+    public float jumpForce, moveSpeed;
+    float startMS;
     public int jumpsNumber;
-    int jumpCounter;
+    int jumpCounter, timeCounter;
+
+    public LayerMask lmEnemy;
 
     public List<AudioClip> audioClips;
 
-    bool isOnAir = true;
+    bool isOnAir;
 
     public gameManager gm;
 
@@ -37,6 +40,7 @@ public class player : MonoBehaviour
         if(other.gameObject.tag == "Bullet")
         {
             takeDmg(0.35f);
+            Destroy(other.gameObject);
         }
     }
 
@@ -46,6 +50,10 @@ public class player : MonoBehaviour
         {
             isOnAir = false;
             jumpCounter = jumpsNumber;
+        }
+        if (other.gameObject.tag == "Boar")
+        {
+            takeDmg(0.51f);
         }
     }
 
@@ -61,11 +69,11 @@ public class player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startMS = moveSpeed;
+        timeCounter = 50;
         hp.maxValue = 1;
         hp.value = hp.maxValue;
-        gm.Load();
-        transform.position = new Vector3(0, 0, 0);
-        rigidbody2d.velocity = new Vector2(0, 0);
+        isOnAir = true;
     }
 
     // Update is called once per frame
@@ -92,13 +100,24 @@ public class player : MonoBehaviour
     // FixedUpdate is called once per 0.02s
     void FixedUpdate()
     {
-        moveSeped = 7 + (transform.position.x / 100);
+        moveSpeed = startMS + (self.position.x / 100);
 
-        if (transform.position.x < -15
-            || transform.position.y < -15)
+        if (Input.GetKey(KeyCode.Return)) timeCounter = 0;
+
+        if (timeCounter < 50) {
+            timeCounter++;
+            float scale = self.localScale.x;
+            Vector3 pos = self.position + new Vector3(0.59375f * scale, 1.0625f, 0),
+                end = Vector3.right * scale;
+            RaycastHit2D seeEnemy = Physics2D.Raycast(pos, end, 10f, lmEnemy);
+            if (seeEnemy) Debug.DrawLine(pos, pos + end * seeEnemy.distance, Color.red);
+            else Debug.DrawLine(pos, pos + end * 10, Color.green);
+        }
+
+        if (self.position.x < -15
+            || self.position.y < -15
+            || hp.value == 0)
             dead();
-
-        if (hp.value == 0) dead();
     }
 
     void AnimProcess()
@@ -137,9 +156,9 @@ public class player : MonoBehaviour
 
     void run(int scale)
     {
-        transform.localScale = new Vector3(scale, 1, 1);
+        self.localScale = new Vector3(scale, 1, 1);
         hpTransform.localScale = new Vector3(scale, 1, 1);
-        rigidbody2d.velocity = new Vector2(moveSeped * scale, rigidbody2d.velocity.y);
+        rigidbody2d.velocity = new Vector2(moveSpeed * scale, rigidbody2d.velocity.y);
     }
 
     void jump()
@@ -168,6 +187,6 @@ public class player : MonoBehaviour
     void dead()
     {
         audioSource.PlayOneShot(audioClips[1]);
-        Start();
+        gm.dead();
     }
 }

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3322076574546337775}
   - component: {fileID: 483119500153520356}
-  - component: {fileID: 6001112483111814627}
   - component: {fileID: 3498738911111844437}
   - component: {fileID: 3788093184932117506}
+  - component: {fileID: 6001112483111814627}
   - component: {fileID: 3971713595439733492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -45787789, guid: 05125762014457249a5e6e2b3ba4d1e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,27 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6001112483111814627
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5429759681987969355}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2a6f20db9977eae43ace05a732639167, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &3498738911111844437
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,7 +97,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 5429759681987969355}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 92007b59cdeed8c4597ef4aef731d199, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -156,11 +135,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 92007b59cdeed8c4597ef4aef731d199, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -170,7 +149,28 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
+--- !u!95 &6001112483111814627
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429759681987969355}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a6f20db9977eae43ace05a732639167, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3971713595439733492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,5 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678d98cfdb0e69e488147d1703d3194a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 3322076574546337775}
+  self: {fileID: 3322076574546337775}
+  rigidbody2d: {fileID: 3788093184932117506}
+  animator: {fileID: 6001112483111814627}
   bullet: {fileID: 7065472775095798541, guid: 7d712cb157fcf99479dd60134cb0d35f, type: 3}
+  lmPlayer:
+    serializedVersion: 2
+    m_Bits: 8

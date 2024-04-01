@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class plant : MonoBehaviour
 {
-    public Transform transform;
+    public Transform self;
+    public Rigidbody2D rigidbody2d;
+    public Animator animator;
+
     public GameObject bullet;
+    public LayerMask lmPlayer;
+
+    Vector3 pos;
 
     void FixedUpdate()
     {
-        if (transform.position.y < -15)
-        {
-            transform.position = new Vector3(transform.position.x, 0, 0);
-        };
+        pos = self.position + new Vector3(- 1.375f, 1.4375f, 0);
+        RaycastHit2D seePlayer = Physics2D.Raycast(pos, Vector2.left, 10f, lmPlayer);
+
+        if (seePlayer) animator.SetBool("attack", true);
+        else animator.SetBool("attack", false);
+
+        if (self.position.y < -15) Destroy(this.gameObject);
     }
 
     public void shoot()
     {
-        Instantiate(bullet, new Vector3(transform.position.x - 1.375f, transform.position.y + 1.4375f, 0), Quaternion.identity, transform);
+        Instantiate(bullet, pos, Quaternion.identity, self);
     }
 }

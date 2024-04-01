@@ -9,17 +9,19 @@ TagManager:
   - Coin
   - Plant
   - Bullet
+  - Boar
+  - Point
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - player
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Coin
+  - Enemy
+  - Bullet
   - 
   - 
   - 

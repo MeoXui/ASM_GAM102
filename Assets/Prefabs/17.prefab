@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3492092325366968537}
   - component: {fileID: 7286747499455772788}
   - component: {fileID: 2723419303668514666}
-  m_Layer: 0
+  - component: {fileID: 5259544295549656384}
+  m_Layer: 6
   m_Name: 17
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857137373293518730}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1031,3 +1032,21 @@ CompositeCollider2D:
   m_OffsetDistance: 0
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1857137373293518730}
+--- !u!114 &5259544295549656384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857137373293518730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4681f5f87cf10d44abf480513cbb9d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 7379857448259734248}
+  SP: {fileID: 5956401010545067859, guid: ae56baeae1652d64989e778a376bc8d3, type: 3}
+  EP: {fileID: 8278371600469203169, guid: b9f4141755f26314fbe4c317f7141fa4, type: 3}
+  plant: {fileID: 5429759681987969355, guid: 566b603fb7bbe3d4da7b7854cb592f00, type: 3}
+  boar: {fileID: 4812686893746027267, guid: 8092c0c808c4bfa488eac0cdf40abd93, type: 3}
+  width: 17
