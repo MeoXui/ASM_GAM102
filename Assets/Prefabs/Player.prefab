@@ -151,7 +151,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 3840
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -345,7 +345,8 @@ MonoBehaviour:
   audioSource: {fileID: 8502116071799174772}
   hp: {fileID: 1153879329046623949}
   fillImage: {fileID: 365965299697587358}
-  jumpForce: 6
+  bullet: {fileID: 4565623051807222833, guid: 0ad3da72b448aa1449deeb0673b103e2, type: 3}
+  jumpForce: 5
   moveSpeed: 7
   jumpsNumber: 2
   lmEnemy:

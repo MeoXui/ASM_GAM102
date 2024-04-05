@@ -14,6 +14,7 @@ public class player : MonoBehaviour
 
     public Slider hp;
     public Image fillImage;
+    public GameObject bullet;
 
     public float jumpForce, moveSpeed;
     float startMS;
@@ -39,8 +40,13 @@ public class player : MonoBehaviour
 
         if(other.gameObject.tag == "Bullet")
         {
-            takeDmg(0.35f);
+            takeDmg(0.21f);
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Bomd")
+        {
+            takeDmg(1.1f);
         }
     }
 
@@ -51,9 +57,15 @@ public class player : MonoBehaviour
             isOnAir = false;
             jumpCounter = jumpsNumber;
         }
+
         if (other.gameObject.tag == "Boar")
         {
-            takeDmg(0.51f);
+            takeDmg(0.21f);
+        }
+
+        if (other.gameObject.tag == "Bomd")
+        {
+            takeDmg(1.1f);
         }
     }
 
@@ -86,13 +98,16 @@ public class player : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow)
             || Input.GetKey(KeyCode.S)) fastFall();
 
-        //if (Input.GetKey(KeyCode.LeftArrow)
-        //    || Input.GetKey(KeyCode.A)) run(-1);
-        //else if (Input.GetKey(KeyCode.RightArrow)
-        //    || Input.GetKey(KeyCode.D)) run(1);
-        //else idle();
-
-        run(1);
+        if (gm.AdminPower)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow)
+                || Input.GetKey(KeyCode.A)) run(-1);
+            else if (Input.GetKey(KeyCode.RightArrow)
+                || Input.GetKey(KeyCode.D)
+                || Input.GetKey(KeyCode.U)) run(1);
+            else idle();
+        }
+        else run(1);
 
         AnimProcess();
     }
@@ -102,16 +117,22 @@ public class player : MonoBehaviour
     {
         moveSpeed = startMS + (self.position.x / 100);
 
-        if (Input.GetKey(KeyCode.Return)) timeCounter = 0;
+        if (Input.GetKeyDown(KeyCode.P))
+            if (gm.AddScore(-1))
+                shot();
 
-        if (timeCounter < 50) {
-            timeCounter++;
+        if (gm.AdminPower)
+        {
             float scale = self.localScale.x;
             Vector3 pos = self.position + new Vector3(0.59375f * scale, 1.0625f, 0),
                 end = Vector3.right * scale;
-            RaycastHit2D seeEnemy = Physics2D.Raycast(pos, end, 10f, lmEnemy);
-            if (seeEnemy) Debug.DrawLine(pos, pos + end * seeEnemy.distance, Color.red);
-            else Debug.DrawLine(pos, pos + end * 10, Color.green);
+            RaycastHit2D seeEnemy = Physics2D.Raycast(pos, end, 5f, lmEnemy);
+            if (seeEnemy)
+            {
+                Debug.DrawLine(pos, pos + end * seeEnemy.distance, Color.red);
+                Destroy(seeEnemy.transform.gameObject);
+            }
+            else Debug.DrawLine(pos, pos + end * 5, Color.green);
         }
 
         if (self.position.x < -15
@@ -179,9 +200,16 @@ public class player : MonoBehaviour
         }
     }
 
+    void shot()
+    {
+        Vector3 pos = self.position + new Vector3(0.59375f, 1.0625f, 0);
+        Instantiate(bullet, pos, Quaternion.identity, self);
+    }
+
     void takeDmg(float dmg)
     {
         hp.value -= dmg;
+        gm.HPColorChanging();
     }
 
     void dead()

@@ -7,13 +7,17 @@ using TMPro;
 
 public class gameManager : MonoBehaviour
 {
-    [SerializeField] private int highScore;
+    private int highScore;
     private int score;
-    public GameObject scBoard, ryBoard;
+
+    public Transform player;
+    public GameObject scBoard, ryBoard, bomd;
     public TextMeshProUGUI tmpScore, tmpRyBoard;
 
     public Slider hp;
     public Image fillImage;
+
+    public bool AdminPower;
 
     void Start()
     {
@@ -23,11 +27,19 @@ public class gameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        HPColorChanging();
+        if (Input.GetKeyDown(KeyCode.R) && AdminPower) reSetHight();
+
+        if (Input.GetKeyDown(KeyCode.H) && AdminPower) spawnBomb();
     }
 
     public void dead()
     {
+        if (score > highScore)
+        {
+            highScore = score;
+            SetScoreText();
+            Save();
+        }
         tmpRyBoard.text = tmpScore.text;
         scBoard.SetActive(false);
         ryBoard.SetActive(true);
@@ -35,11 +47,16 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void AddScore(int V)
+    public bool AddScore(int V)
     {
         score += V;
+        if (score < 0)
+        {
+            score = 0;
+            return false;
+        }
         SetScoreText();
-        if (score > highScore) Save();
+        return true;
     }
 
     public void SetScoreText()
@@ -48,22 +65,25 @@ public class gameManager : MonoBehaviour
                       + "High: " + highScore.ToString("n0");
     }
 
+    [SerializeField]
+    string save;
+
     public void Save()
     {
-        string SS = Extension.Encrypt(score.ToString("n0"), "MATKHAUSIEUCAPVUTRU");
-        PlayerPrefs.SetString("HighScore", SS);
+        save = Extension.Encrypt(highScore.ToString("n0"), "MATKHAUSIEUCAPVUTRU");
+        PlayerPrefs.SetString("HighScore", save);
+        Load();
     }
 
     public void Load()
     {
-        string SS = PlayerPrefs.GetString("HighScore");
-        if(!string.IsNullOrEmpty(SS)) highScore = int.Parse(Extension.Decrypt(SS, "MATKHAUSIEUCAPVUTRU"));
-        score = 0;
+        save = PlayerPrefs.GetString("HighScore");
+        if(!string.IsNullOrEmpty(save)) highScore = int.Parse(Extension.Decrypt(save, "MATKHAUSIEUCAPVUTRU"));
         AddScore(0);
     }
 
     float r = 0, g = 1;
-    void HPColorChanging()
+    public void HPColorChanging()
     {
         if (r > 1) r = 1;
         if (r < 0) r = 0;
@@ -82,5 +102,16 @@ public class gameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void spawnBomb()
+    {
+        Instantiate(bomd, new Vector3(player.position.x + Random.Range(-1, 2) * 2, 5, 0), Quaternion.identity);
+    }
+
+    private void reSetHight()
+    {
+        highScore = 0;
+        Save();
     }
 }

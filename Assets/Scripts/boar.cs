@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class boar : MonoBehaviour
 {
+    private int hp;
+
     public Transform self;
     public Rigidbody2D rigidbody2d;
     public Animator animator;
@@ -22,6 +24,11 @@ public class boar : MonoBehaviour
         {
             idle();
         }
+        if (other.gameObject.tag =="Player bullet")
+        {
+            Destroy(other.gameObject);
+            hp--;
+        }
     }
 
     void Start()
@@ -30,6 +37,7 @@ public class boar : MonoBehaviour
         startMS = moveSpeed;
         isWalking = false;
         isAttacking = false;
+        hp = 3;
     }
 
     void Update()
@@ -68,7 +76,7 @@ public class boar : MonoBehaviour
         if (seePlayer) isAttacking = true;
         else isAttacking = false;
 
-        if (self.position.y < -15) Destroy(this.gameObject);
+        if (self.position.y < -15 || hp <= 0) Destroy(this.gameObject);
     }
 
     public void turn()

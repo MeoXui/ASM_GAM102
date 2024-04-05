@@ -533,9 +533,9 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 1486282756}
-    - target: {fileID: 5865344144818666067, guid: b57d87b1167a05143ad43b5a4598c785, type: 3}
-      propertyPath: moveSpeed
-      value: 7
+    - target: {fileID: 8202408931294846260, guid: b57d87b1167a05143ad43b5a4598c785, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 3840
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1951,13 +1951,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17cf074bd30e624b9923c237c2b6e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScore: 0
+  player: {fileID: 1005615539}
   scBoard: {fileID: 135051684}
   ryBoard: {fileID: 496323611}
+  bomd: {fileID: 4419886795510566380, guid: 5077e1ecf1254c742b28e05fb5b80559, type: 3}
   tmpScore: {fileID: 135168780}
   tmpRyBoard: {fileID: 1653490208}
   hp: {fileID: 2147001702}
   fillImage: {fileID: 1176510157}
+  AdminPower: 0
+  save: 
 --- !u!4 &1486282757
 Transform:
   m_ObjectHideFlags: 0
