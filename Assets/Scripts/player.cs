@@ -121,7 +121,7 @@ public class player : MonoBehaviour
             if (gm.AddScore(-1))
                 shot();
 
-        if (gm.AdminPower)
+        if (gm.AdminPower && Input.GetKey(KeyCode.T))
         {
             float scale = self.localScale.x;
             Vector3 pos = self.position + new Vector3(0.59375f * scale, 1.0625f, 0),
@@ -203,7 +203,7 @@ public class player : MonoBehaviour
     void shot()
     {
         Vector3 pos = self.position + new Vector3(0.59375f, 1.0625f, 0);
-        Instantiate(bullet, pos, Quaternion.identity, self);
+        Instantiate(bullet, pos, Quaternion.identity);
     }
 
     void takeDmg(float dmg)
