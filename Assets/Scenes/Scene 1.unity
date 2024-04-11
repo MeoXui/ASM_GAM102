@@ -1959,7 +1959,7 @@ MonoBehaviour:
   tmpRyBoard: {fileID: 1653490208}
   hp: {fileID: 2147001702}
   fillImage: {fileID: 1176510157}
-  AdminPower: 0
+  AdminPower: 1
   save: 
 --- !u!4 &1486282757
 Transform:

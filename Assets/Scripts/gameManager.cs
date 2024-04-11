@@ -25,11 +25,14 @@ public class gameManager : MonoBehaviour
         Load();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H)) spawnBomb();
+    }
+
     void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.R) && AdminPower) reSetHight();
-
-        if (Input.GetKeyDown(KeyCode.H) && AdminPower) spawnBomb();
     }
 
     public void dead()
@@ -106,7 +109,23 @@ public class gameManager : MonoBehaviour
 
     public void spawnBomb()
     {
-        Instantiate(bomd, new Vector3(player.position.x + Random.Range(-1, 2) * 2, 5, 0), Quaternion.identity);
+        //Instantiate(bomd, new Vector3(player.position.x + Random.Range(-1, 2) * 2, 5, 0), Quaternion.identity);
+
+        Vector3 vitri1 = new Vector3(-2f, 5f, 0f) + player.position,
+            vitri2 = new Vector3(1f, 5f, 0f) + player.position,
+            vitri3 = new Vector3(3.5f, 5f, 0f) + player.position;
+        switch(Random.Range(0, 3))
+        {
+            case 0:
+                Instantiate(bomd, vitri1, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(bomd, vitri2, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(bomd, vitri3, Quaternion.identity);
+                break;
+        }
     }
 
     private void reSetHight()

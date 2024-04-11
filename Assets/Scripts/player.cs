@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -65,7 +65,7 @@ public class player : MonoBehaviour
 
         if (other.gameObject.tag == "Bomd")
         {
-            takeDmg(1.1f);
+            dead();
         }
     }
 
@@ -75,6 +75,11 @@ public class player : MonoBehaviour
         {
             isOnAir = true;
             jumpCounter = jumpsNumber - 1;
+        }
+
+        if (other.gameObject.tag == "Bomd")
+        {
+            dead();
         }
     }
 
