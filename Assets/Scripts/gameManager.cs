@@ -11,7 +11,7 @@ public class gameManager : MonoBehaviour
     private int score;
 
     public Transform player;
-    public GameObject scBoard, ryBoard, bomd;
+    public GameObject scBoard, ryBoard;
     public TextMeshProUGUI tmpScore, tmpRyBoard;
 
     public Slider hp;
@@ -19,15 +19,18 @@ public class gameManager : MonoBehaviour
 
     public bool AdminPower;
 
+    int timeCounter;
+
     void Start()
     {
+        timeCounter = 0;
         Time.timeScale = 1;
         Load();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H)) spawnBomb();
+
     }
 
     void FixedUpdate()
@@ -105,27 +108,6 @@ public class gameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-
-    public void spawnBomb()
-    {
-        //Instantiate(bomd, new Vector3(player.position.x + Random.Range(-1, 2) * 2, 5, 0), Quaternion.identity);
-
-        Vector3 vitri1 = new Vector3(-2f, 5f, 0f) + player.position,
-            vitri2 = new Vector3(1f, 5f, 0f) + player.position,
-            vitri3 = new Vector3(3.5f, 5f, 0f) + player.position;
-        switch(Random.Range(0, 3))
-        {
-            case 0:
-                Instantiate(bomd, vitri1, Quaternion.identity);
-                break;
-            case 1:
-                Instantiate(bomd, vitri2, Quaternion.identity);
-                break;
-            case 2:
-                Instantiate(bomd, vitri3, Quaternion.identity);
-                break;
-        }
     }
 
     private void reSetHight()

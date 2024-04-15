@@ -38,6 +38,11 @@ public class player : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+        if (other.gameObject.tag == "Apple")
+        {
+            takeDmg(-0.21f);
+        }
+
         if(other.gameObject.tag == "Bullet")
         {
             takeDmg(0.21f);
@@ -63,9 +68,9 @@ public class player : MonoBehaviour
             takeDmg(0.21f);
         }
 
-        if (other.gameObject.tag == "Bomd")
+        if (other.gameObject.tag == "Plant")
         {
-            dead();
+            takeDmg(0.21f);
         }
     }
 
@@ -77,9 +82,9 @@ public class player : MonoBehaviour
             jumpCounter = jumpsNumber - 1;
         }
 
-        if (other.gameObject.tag == "Bomd")
+        if (other.gameObject.tag == "Bomb")
         {
-            dead();
+            takeDmg(1.01f);
         }
     }
 
@@ -108,10 +113,10 @@ public class player : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow)
                 || Input.GetKey(KeyCode.A)) run(-1);
             else if (Input.GetKey(KeyCode.RightArrow)
-                || Input.GetKey(KeyCode.D)
-                || Input.GetKey(KeyCode.U)) run(1);
+                || Input.GetKey(KeyCode.D)) run(1);
             else idle();
         }
+        else if (Input.GetKey(KeyCode.Q)) idle();
         else run(1);
 
         AnimProcess();

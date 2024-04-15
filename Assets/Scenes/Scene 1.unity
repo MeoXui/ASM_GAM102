@@ -1954,7 +1954,6 @@ MonoBehaviour:
   player: {fileID: 1005615539}
   scBoard: {fileID: 135051684}
   ryBoard: {fileID: 496323611}
-  bomd: {fileID: 4419886795510566380, guid: 5077e1ecf1254c742b28e05fb5b80559, type: 3}
   tmpScore: {fileID: 135168780}
   tmpRyBoard: {fileID: 1653490208}
   hp: {fileID: 2147001702}

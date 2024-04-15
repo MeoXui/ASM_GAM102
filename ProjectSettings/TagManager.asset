@@ -12,7 +12,8 @@ TagManager:
   - Boar
   - Point
   - Player bullet
-  - Bomd
+  - Bomb
+  - Apple
   layers:
   - Default
   - TransparentFX
@@ -25,8 +26,8 @@ TagManager:
   - Enemy
   - Bullet
   - PlayerBullet
-  - Bomd
-  - 
+  - Bomb
+  - Apple
   - 
   - 
   - 
